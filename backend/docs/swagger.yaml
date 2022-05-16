@@ -1,0 +1,148 @@
+basePath: /
+definitions:
+  models.Channel:
+    properties:
+      category:
+        type: string
+      cloud:
+        type: string
+      copyright:
+        type: string
+      description:
+        type: string
+      docs:
+        type: string
+      generator:
+        type: string
+      image:
+        type: string
+      item:
+        items:
+          $ref: '#/definitions/models.Item'
+        type: array
+      language:
+        type: string
+      lastBuildDate:
+        type: string
+      link:
+        type: string
+      managingEditor:
+        type: string
+      pubDate:
+        type: string
+      rating:
+        type: string
+      skipDays:
+        type: string
+      skipHours:
+        type: string
+      textInput:
+        type: string
+      title:
+        type: string
+      ttl:
+        type: string
+      webMaster:
+        type: string
+    type: object
+  models.Item:
+    properties:
+      author:
+        type: string
+      category:
+        type: string
+      comments:
+        type: string
+      description:
+        type: string
+      enclosure:
+        type: string
+      guid:
+        type: string
+      link:
+        type: string
+      pubDate:
+        type: string
+      source:
+        type: string
+      title:
+        type: string
+    type: object
+  models.Rss2:
+    properties:
+      channel:
+        $ref: '#/definitions/models.Channel'
+    type: object
+host: localhost:8080
+info:
+  contact:
+    name: -Marlux-
+  description: This is a simple RSS Reader API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: RSS READER API by Marlux
+  version: "1.0"
+paths:
+  /feeds:
+    get:
+      consumes:
+      - application/json
+      description: Get all feeds
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Rss2'
+            type: array
+      summary: Get all feeds
+  /feeds/{providerId}:
+    get:
+      consumes:
+      - application/json
+      description: Get all feeds From a Provider
+      parameters:
+      - description: Provider Id
+        in: path
+        name: providerId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Rss2'
+      summary: Get all feeds From a Provider
+  /feeds/{providerId}/{feedId}:
+    get:
+      consumes:
+      - application/json
+      description: Get one feed From a Provider
+      parameters:
+      - description: Provider Id
+        in: path
+        name: providerId
+        required: true
+        type: integer
+      - description: Feed Id
+        in: path
+        name: feedId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Item'
+      summary: Get one feed From a Provider
+schemes:
+- http
+swagger: "2.0"

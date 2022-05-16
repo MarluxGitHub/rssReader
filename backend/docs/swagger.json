@@ -1,0 +1,224 @@
+{
+    "schemes": [
+        "http"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a simple RSS Reader API",
+        "title": "RSS READER API by Marlux",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "-Marlux-"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/feeds": {
+            "get": {
+                "description": "Get all feeds",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get all feeds",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Rss2"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/feeds/{providerId}": {
+            "get": {
+                "description": "Get all feeds From a Provider",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get all feeds From a Provider",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Provider Id",
+                        "name": "providerId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Rss2"
+                        }
+                    }
+                }
+            }
+        },
+        "/feeds/{providerId}/{feedId}": {
+            "get": {
+                "description": "Get one feed From a Provider",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get one feed From a Provider",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Provider Id",
+                        "name": "providerId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Feed Id",
+                        "name": "feedId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Item"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Channel": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "cloud": {
+                    "type": "string"
+                },
+                "copyright": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "docs": {
+                    "type": "string"
+                },
+                "generator": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "item": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Item"
+                    }
+                },
+                "language": {
+                    "type": "string"
+                },
+                "lastBuildDate": {
+                    "type": "string"
+                },
+                "link": {
+                    "type": "string"
+                },
+                "managingEditor": {
+                    "type": "string"
+                },
+                "pubDate": {
+                    "type": "string"
+                },
+                "rating": {
+                    "type": "string"
+                },
+                "skipDays": {
+                    "type": "string"
+                },
+                "skipHours": {
+                    "type": "string"
+                },
+                "textInput": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "ttl": {
+                    "type": "string"
+                },
+                "webMaster": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Item": {
+            "type": "object",
+            "properties": {
+                "author": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "comments": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "enclosure": {
+                    "type": "string"
+                },
+                "guid": {
+                    "type": "string"
+                },
+                "link": {
+                    "type": "string"
+                },
+                "pubDate": {
+                    "type": "string"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Rss2": {
+            "type": "object",
+            "properties": {
+                "channel": {
+                    "$ref": "#/definitions/models.Channel"
+                }
+            }
+        }
+    }
+}
