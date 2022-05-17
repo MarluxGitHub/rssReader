@@ -5,9 +5,12 @@ import (
 	"rssReader/service"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 func GetRouting(app *fiber.App) {
+	app.Use(cors.New(cors.ConfigDefault))
+
 	service.DatabaseServiceInstance.Connect()
 	service.DatabaseServiceInstance.Migrate()
 

@@ -1,10 +1,9 @@
 import React from "react";
 import "./App.css"
+import Feeds from "./components/feeds/Feeds";
 
 function App() {
-  return (
-    <div><h1>Work in Progress</h1></div>
-  );
+  return <Feeds/>
 }
 
 export default App;
