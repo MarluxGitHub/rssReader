@@ -7,8 +7,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-
-
 func GetRouting(app *fiber.App) {
 	service.DatabaseServiceInstance.Connect()
 	service.DatabaseServiceInstance.Migrate()

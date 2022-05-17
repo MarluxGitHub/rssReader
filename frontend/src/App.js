@@ -1,13 +1,10 @@
-import React from 'react';
-import { Admin, Resource, ListGuesser } from 'react-admin';
-import simpleRestProvider from 'ra-data-simple-rest';
+import React from "react";
+import "./App.css"
 
-const dataProvider = simpleRestProvider('http://localhost:8080');
-
-const App = () => (
-        <Admin dataProvider={dataProvider}>
-            <Resource name="feeds" list={ListGuesser} />
-        </Admin>
-);
+function App() {
+  return (
+    <div><h1>Work in Progress</h1></div>
+  );
+}
 
 export default App;
